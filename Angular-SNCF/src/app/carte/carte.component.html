@@ -1,0 +1,780 @@
+<app-layers></app-layers>
+<app-nav-bar></app-nav-bar>
+
+<div id="mesure">
+  <form>
+    <label for="type">Measurement type &nbsp;</label>
+    <select id="type" class="form-select">
+      <option value="dafault" selected>default</option>
+      <option value="LineString">Length (LineString)</option>
+      <option value="Polygon">Area (Polygon)</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <label for="segments">Show segment lengths:&nbsp;</label>
+    <input class="form-check-input" type="checkbox" id="segments" checked
+      style="width: 20px; height: 20px; margin-top: 7px;" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    <label for="clear" hidden>Clear previous measure:&nbsp;</label>
+    <input type="checkbox" id="clear" checked hidden />
+  </form>
+
+  <div id="edit">
+
+    <label for="type" style="margin-top:5px">Choose layer to edit &nbsp; </label>
+    <select id="LayerCarte" class="form-select" (change)='onLayerSelected($event)'>
+      <option disabled>Choose a layer to edit </option>
+    </select>
+
+  </div>
+
+</div>
+
+<div id="map" class="map">
+
+  <!----------------  Mesure and edit   ------------->
+  <!---------------- -------------------------------->
+
+
+
+  <!----------------  Features : Map------------->
+  <!---------------- -------------------------------->
+  <div id="featureOptions">
+    <!-- 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchFearture">
+     zoom to layer
+    </button>-->
+
+    <!-- Modal -->
+    <!--
+    <div class="modal fade" id="searchFearture" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="FormModalSearch" (ngSubmit)="SearchFeature2()">
+
+            <div>
+              <label for="type" style="margin-top:5px">Choose the layer  </label>
+              <select id="ModalProject" class="form-select"   formControlName="layer" >
+              </select>
+            </div>
+
+            <div >
+              <label for="exampleFormControlInput1" class="form-label">insert the id </label>
+              <input type="email" class="form-control" id="exampleFormControlInput1"  id="inputId" >
+            </div>
+            <button type="submit" class="btn btn-primary">zoom to layer</button>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+-->
+    <!----------------------------------------------------------------------------------------->
+
+    <button (click)="select_feature()" id="select_feature" disabled="true" type="button"
+      style="border-radius: 8px;">Select</button>
+    <button (click)="create_feature2()" id="create_feature" disabled="true" style="border-radius: 8px;visibility: hidden;">Create</button>
+    <button (click)="modify_feature2()" id="modify_feature" disabled="true" style="border-radius: 8px;">Modify </button>
+    <button (click)="delete_feature2()" id="delete_feature" disabled="true" style="border-radius: 8px;">Delete
+      feature</button>
+    <button (click)="toggle_editing()" id="toggle_editing"
+      style="background-color: rgb(210 233 244);border-radius: 8px;">Toggle
+      Editing</button>
+    &nbsp; &nbsp;
+
+
+
+    <!-------------------------------- butom Form  p_tiv------------------------->
+    <!---------------- --------------------------------------------------------->
+
+    <button type="button" class="button" id='SNCF_p_tiv' (click)="SNCF_p_tiv.show()">P_TIV</button>
+
+    <app-modal id="myModal" #SNCF_p_tiv class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">SP3 : p_tiv</ng-container>
+      <ng-container class="app-modal-body">
+        <!----------------here--------------------->
+
+        <form [formGroup]="FormLayerPtiv" (ngSubmit)="FormLayerPtivFun()">
+
+
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">FID</label>
+            <input type="email" class="form-control" id="fid" aria-describedby="emailHelp" placeholder="Enter "
+              formControlName="fid" [ngClass]="{ 'is-invalid': submitted && f['fid'].errors }">
+
+            <div *ngIf="f['fid'].errors" class="invalid-feedback">
+              <div *ngIf="f['fid'].errors['required']">Fullname is required</div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">ID Objet</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="id_objet"
+              aria-describedby="emailHelp" [ngClass]="{ 'is-invalid': submitted && f['id_objet'].errors }">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">IMU</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="imu"
+              aria-describedby="emailHelp" [ngClass]="{ 'is-invalid': submitted && f['imu'].errors }">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Type</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="type"
+              aria-describedby="emailHelp" [ngClass]="{ 'is-invalid': submitted && f['type'].errors }">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Sens Principal</label>
+            <select class="form-select" aria-label="Default select example" id="exampleFormControlSelect1"
+              formControlName="sens_principal" [ngClass]="{ 'is-invalid': submitted && f['sens_principal'].errors }">
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>I</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Status</label>
+            <select class="form-select" aria-label="Default select example" id="exampleFormControlSelect1"
+              formControlName="etat" [ngClass]="{ 'is-invalid': submitted && f['etat'].errors }">
+              <option value="APP"> APPARIE </option>
+              <option value="SUP">SUPPRIMER </option>
+              <option value="INS"> INSTANCIE</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Date</label>
+            <div class="input-group " id="datetimepicker">
+              <input type="text" class="form-control" formControlName="date_heure_maj"
+                [ngClass]="{ 'is-invalid': submitted && f['date_heure_maj'].errors }">
+              <span class="input-group-addon">
+                <span class="input-group-text bg-white d-block">
+                  <i class="fa fa-calendar" (click)="GetFullDate_Ptiv()"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1"> schema name </label>
+            <input class="form-control" formControlName="nom_schema"
+              [ngClass]="{ 'is-invalid': submitted && f['nom_schema'].errors }">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1"> ID_pas </label>
+            <input class="form-control" formControlName="id_pas"
+              [ngClass]="{ 'is-invalid': submitted && f['id_pas'].errors }">
+          </div>
+
+          <!---------------- button map --------------------->
+          <div class="form-group">
+
+            <label for="exampleInputEmail1"> Choose the first P_bus_ndv </label>
+            <div style=" display: flex;">
+              <input class="form-control" id="input_p_bus_ndv_1" value="" formControlName="id_ndv1"
+                [ngClass]="{ 'is-invalid': submitted && f['id_ndv1'].errors }"> &nbsp;
+              <button (click)="p_bus_ndv_1()" type="button" class="btn btn-info" id="p_bus_ndv_1" style="margin: auto;">
+                <span style="float: right;"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+              </button>
+            </div>
+
+            <label for="exampleInputEmail1"> Choose the second P_bus_ndv </label>
+            <div style=" display: flex;">
+              <input class="form-control" id="input_p_bus_ndv_2" value="" formControlName="id_ndv2"
+                [ngClass]="{ 'is-invalid': submitted && f['id_ndv2'].errors }">&nbsp;
+              <button (click)="p_bus_ndv_2($event)" type="button" class="btn btn-info" id="p_bus_ndv_2"
+                style="margin: auto;"> <span style="float: right;"><i class="fa fa-map-marker"
+                    aria-hidden="true"></i></span></button>
+            </div>
+
+          </div>
+
+          <!----------------draw and submit--------------------->
+          <div>
+            <br>
+            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+            <button (click)="Draw_p_bus_ndv()" type="button" class="btn btn-labeled btn-info" id="Darw_p_bus_ndv" 
+            style="visibility: hidden;">
+              <span class="btn-label"> <i class="fa fa-pencil-square " aria-hidden="true"></i></span> Draw</button>
+            &nbsp; &nbsp;&nbsp;
+            <button (click)="delete_p_bus_ndv()" type="button" class="btn btn-labeled btn-info" id="Darw_p_bus_ndv"
+            style="visibility: hidden;">
+              <span class="btn-label"> <i class="fa fa-trash " aria-hidden="true"></i></span>delete</button>
+            &nbsp; &nbsp;&nbsp;
+            <button type="submit" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fa fa-check "></i></span>Save</button>
+          </div>
+
+        </form>
+
+        <!----------------here -------------------->
+      </ng-container>
+      <ng-container class="app-modal-footer">
+        <button type="button" class="btn btn-labeled btn-light" style="float: right;" (click)="SNCF_p_tiv.hide()">
+          <span class="btn-label"><i class="fa fa-remove"></i></span>Close
+        </button>
+      </ng-container>
+    </app-modal>
+    <!---------------- --------------------->
+
+    <!-------------------------------- butom Form  p_bus_ndv ------------------------>
+    <!---------------- --------------------------------------------------------->
+
+    <button type="button" class="button" id='SNCF_p_bus_ndv' (click)="SNCF_p_bus_ndv.show()">SNCF_p_bus_ndv</button>
+
+    <app-modal id="myModal" #SNCF_p_bus_ndv class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">SP3 : p_bus_ndv</ng-container>
+      <ng-container class="app-modal-body">
+        <h3>MODAL DIALOG</h3>
+        <p>SNCF_p_bus_ndv.</p>
+      </ng-container>
+      <ng-container class="app-modal-footer">
+
+        <button type="button" class="button button3" (click)="SNCF_p_bus_ndv.hide()">Delete</button>
+        <button type="button" class="button button1" (click)="SNCF_p_bus_ndv.hide()">Save</button>
+        <button type="button" class="button button2" style="float: right;" (click)="SNCF_p_bus_ndv.hide()">Close
+        </button>
+      </ng-container>
+    </app-modal>
+
+
+    <!-------------------------------- butom Form  Pont ------------------------>
+    <!---------------- --------------------------------------------------------->
+    <button type="button" class="button" id='SP4_pont' (click)="SP4_pont.show()">SP4_pont</button>
+    <app-modal #SP4_pont class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">SP4: Pont</ng-container>
+      <ng-container class="app-modal-body">
+
+
+        <form [formGroup]="FormLayerPont" (ngSubmit)="FormLayerPontFun()">
+
+          <!--------------id_object---------------->
+          <div class="mb-3">
+            <label class="form-label">Insert the object ID </label>
+            <input formControlName="id_objet" [ngClass]="{ 'is-invalid': submitted && h['id_objet'].errors }"
+              class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+            <div *ngIf="h['id_objet'].errors" class="invalid-feedback">
+              <div *ngIf="h['id_objet'].errors['required']">This field is REQUIRED</div>
+              <div *ngIf="h['id_objet'].errors?.['urlValid']">This SHOUD CONTAIN</div>
+
+            </div>
+
+
+          </div>
+
+          <!------------------------------>
+          <!--------------Imu---------------->
+          <div class="mb-3">
+            <label class="form-label">Insert the IMU </label>
+            <input formControlName="imu" [ngClass]="{ 'is-invalid': submitted && h['imu'].errors }" class="form-control"
+              id="exampleInputEmail1" aria-describedby="emailHelp">
+
+            <div *ngIf="h['imu'].errors" class="invalid-feedback">
+              <div *ngIf="h['imu'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+          <!------------------------------>
+
+          <!--------------Nom---------------->
+
+          <div class="mb-3">
+            <label class="form-label">Insert the Name </label>
+            <input formControlName="nom" [ngClass]="{ 'is-invalid': submitted && h['nom'].errors }" class="form-control"
+              id="exampleInputEmail1" aria-describedby="emailHelp">
+
+            <div *ngIf="h['nom'].errors" class="invalid-feedback">
+              <div *ngIf="h['nom'].errors['required']">This field is REQUIRED</div>
+            </div>
+          </div>
+          <!------------------------------>
+
+          <!--------------Etat--------------->
+
+          <div class="mb-3">
+            <label class="form-label">Insert the Statut </label>
+            <select class="form-select" [ngClass]="{ 'is-invalid': submitted && h['etat'].errors }"
+              aria-label="Default select example" id="exampleFormControlSelect1" formControlName="etat">
+              <option value="APP"> APPARIE </option>
+              <option value="SUP">SUPPRIMER </option>
+              <option value="INS"> INSTANCIE</option>
+              <option value="VER"> VERIFIER </option>
+            </select>
+
+            <div *ngIf="h['etat'].errors" class="invalid-feedback">
+              <div *ngIf="h['etat'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+          <!------------------------------>
+
+
+          <!------------------------------>
+
+          <!--------------Date---------------->
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Date</label>
+            <div class="input-group ">
+              <input type="text" class="form-control" formControlName="date_heure_maj"
+                [ngClass]="{ 'is-invalid': submitted && h['date_heure_maj'].errors }">
+              <span class="input-group-addon">
+                <span class="input-group-text bg-white d-block">
+                  <i class="fa fa-calendar" (click)="GetFullDate_Pont()"></i>
+                </span>
+              </span>
+            </div>
+
+            <div *ngIf="h['date_heure_maj'].errors" class="invalid-feedback">
+              <div *ngIf="h['date_heure_maj'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+
+
+          <!---------------Draw First button --------------->
+          <div class="mb-3">
+            <label class="form-label">The Fisrt Point(X,Y) </label>
+            <div id="draw_firt_point">
+
+              <input formControlName="cord_pt1_x" class="form-control" aria-describedby="emailHelp"> &nbsp;
+
+              <input formControlName="cord_pt1_y" class="form-control" aria-describedby="emailHelp"> &nbsp;
+
+
+              <button (click)="p_pont_1()" type="button" class="btn btn-info" style="margin: auto;"> <span
+                  style="float: right;"><i class="fa fa-map-marker" aria-hidden="true"></i></span></button>
+
+
+            </div>
+          </div>
+
+          <!---------------Draw SECOND button --------------->
+          <div class="mb-3">
+
+            <label class="form-label">The Second Point(X,Y) </label>
+
+            <div id="draw_second_point">
+              <input formControlName="cord_pt2_x" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">&nbsp;
+
+              <input formControlName="cord_pt2_y" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">&nbsp;
+
+              <button (click)="p_pont_2()" type="button" class="btn btn-info" style="margin: auto;"> <span
+                  style="float: right;"><i class="fa fa-map-marker" aria-hidden="true"></i></span></button>
+
+            </div>
+          </div>
+          <!------------------------------>
+
+          <!--------------id_pas-------------->
+
+          <div class="mb-3">
+            <label class="form-label">Insert the id_pss </label>
+            <input formControlName="id_pas" [ngClass]="{ 'is-invalid': submitted && h['id_pas'].errors }"
+              class="form-control" id="exampleInputEmail1">
+
+            <div *ngIf="h['id_pas'].errors" class="invalid-feedback">
+              <div *ngIf="h['id_pas'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+
+
+          <!------------------------------>
+
+          <!--------------Nom schema----------->
+          <div class="mb-3">
+            <label class="form-label">Insert the schema name</label>
+            <input formControlName="nom_schema" [ngClass]="{ 'is-invalid': submitted && h['nom_schema'].errors }"
+              class="form-control">
+
+            <div *ngIf="h['nom_schema'].errors" class="invalid-feedback">
+              <div *ngIf="h['nom_schema'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+
+
+          <button type="submit" class="btn btn-labeled btn-success">
+            <span class="btn-label"><i class="fa fa-check "></i></span>Save</button>
+
+        </form>
+
+      </ng-container>
+      <ng-container class="app-modal-footer">
+        <button type="button" class="btn btn-labeled btn-light" style="float: right;" (click)="SP4_pont.hide()">
+          <span class="btn-label"><i class="fa fa-remove"></i></span>Close
+        </button>
+
+      </ng-container>
+    </app-modal>
+
+
+    <!-------------------------------- butom Form  SG_SIGNAL ------------------------>
+    <!---------------- --------------------------------------------------------->
+    <button type="button" class="button" id='SP4_sg_signal' (click)="SP4_sg_signal.show()">SP4_sg_signal</button>
+    <app-modal #SP4_sg_signal class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">SP4_sg_signal</ng-container>
+      <ng-container class="app-modal-body">
+
+        <form [formGroup]="FormLayerSgSignal" (ngSubmit)="FormLayerSgSignalFun()">
+          <!----------------------NOM------------------------->
+          <div class="mb-3">
+            <label class="form-label">Insert the Name </label>
+            <input formControlName="nom" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && s['nom'].errors }">
+
+            <div *ngIf="s['nom'].errors" class="invalid-feedback">
+              <div *ngIf="s['nom'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+
+          <!----------------------IMU------------------------->
+          <div class="mb-3">
+            <label class="form-label">Insert the IMU </label>
+            <input formControlName="imu" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && s['imu'].errors }">
+
+            <div *ngIf="s['imu'].errors" class="invalid-feedback">
+              <div *ngIf="s['imu'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+          <!----------------------Date------------------------->
+
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Insert the Date</label>
+            <div class="input-group " id="datetimepicker">
+              <input type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && s['date_heure_maj'].errors }" formControlName="date_heure_maj">
+              <span class="input-group-addon">
+                <span class="input-group-text bg-white d-block">
+                  <i class="fa fa-calendar" (click)="GetFullDate_Sg_signal()"></i>
+                </span>
+              </span>
+            </div>
+
+            <div *ngIf="s['date_heure_maj'].errors" class="invalid-feedback">
+              <div *ngIf="s['date_heure_maj'].errors['required']">This field is REQUIRED</div>
+            </div>
+
+          </div>
+
+          <!----------------------ETAT------------------------->
+
+          <div class="mb-3">
+            <label class="form-label">Insert the Statut </label>
+            <select class="form-select" aria-label="Default select example"
+              [ngClass]="{ 'is-invalid': submitted && s['etat'].errors }" formControlName="etat">
+              <option value="APP"> APPARIE </option>
+              <option value="SUP">SUPPRIMER </option>
+              <option value="INS"> INSTANCIE</option>
+              <option value="VER"> VERIFIER </option>
+            </select>
+
+            <div *ngIf="s['etat'].errors" class="invalid-feedback">
+              <div *ngIf="s['etat'].errors['required']">This field is REQUIRED</div>
+            </div>
+          </div>
+          <!----------------------SENS------------------------->
+          <div class="mb-3">
+            <label class="form-label">Insert the Direction</label>
+            <select class="form-select" aria-label="Default select example" formControlName="sens"
+              [ngClass]="{ 'is-invalid': submitted && s['sens'].errors }">
+              <option value="C"> Croissant </option>
+              <option value="D"> Décroissant </option>
+            </select>
+
+          </div>
+
+          <!----------------------POSITION---------------------->
+          <div class="mb-3">
+            <label class="form-label">Insert the position </label>
+            <select class="form-select" aria-label="Default select example"
+              [ngClass]="{ 'is-invalid': submitted && s['position'].errors }" formControlName="position">
+              <option value="D"> Droite </option>
+              <option value="G"> Gauche </option>
+            </select>
+
+
+
+          </div>
+
+          <!----------------------type-------------------------->
+          <div class="mb-3">
+            <label class="form-label">Insert the type </label>
+            <select class="form-select" aria-label="Default select example"
+              [ngClass]="{ 'is-invalid': submitted && s['type'].errors }" formControlName="type">
+              <option value="C"> C </option>
+              <option value="A"> A </option>
+              <option value="Cv"> Cv </option>
+              <option value="H"> H </option>
+              <option value="S"> S </option>
+              <option value="GA"> GA </option>
+            </select>
+
+
+
+          </div>
+
+          <!----------------------INdicateur-------------------->
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1">indication</label>
+            <input type="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && s['indication'].errors }"
+              formControlName="indication">
+            <small id="emailHelp" class="form-text text-muted">The separator between indications is /. For example:
+              S/C/M
+            </small>
+
+
+
+          </div>
+          <!----------------------Equipe----------------------->
+
+          <div class="mb-3">
+            <input class="form-check-input" type="checkbox" value="" formControlName="equipe"> &nbsp;
+            <label class="form-check-label" for="flexCheckDefault">
+              ETCS equipped signal
+            </label>
+
+          </div>
+
+          <!----------------------Draw----------------------->
+          <div class="mb-3">
+            <label class="form-label">Draw the position of SG_SIGNAL </label>
+            <div id="Draw_SG_SIGNAL">
+
+              <input formControlName="cord_pt_x" class="form-control" formControlName="cord_pt_x"> &nbsp;
+
+              <input formControlName="cord_pt_y" class="form-control" formControlName="cord_pt_y"> &nbsp;
+
+
+              <button (click)="draw_p_pont()" type="button" class="btn btn-info" style="margin: auto;"> <span
+                  style="float: right;"><i class="fa fa-map-marker" aria-hidden="true"></i></span></button>
+
+
+            </div>
+          </div>
+
+          <!--------------ID_pas-------------->
+
+          <div class="form-group">
+            <label for="exampleInputEmail1"> schema name </label>
+            <input class="form-control" formControlName="nom_schema">
+          </div>
+
+          <!--------------Nom_schema-------------->
+
+          <div class="form-group">
+            <label for="exampleInputEmail1"> ID_pas </label>
+            <input class="form-control" formControlName="id_pas">
+          </div>
+
+
+
+          <button type="submit" class="btn btn-labeled btn-success">
+            <span class="btn-label"><i class="fa fa-check "></i></span>Save</button>
+        </form>
+
+      </ng-container>
+      <ng-container class="app-modal-footer">
+        <button type="button" class="btn btn-labeled btn-light" style="float: right;" (click)="SP4_sg_signal.hide()">
+          <span class="btn-label"><i class="fa fa-remove"></i></span>Close
+        </button>
+      </ng-container>
+    </app-modal>
+
+
+    <!----------------  Features : ZOOM  : in the map------------>
+    <!---------------- ----------------------------------------->
+
+    <button type="button" class="button" id='FeatureZOOM' (click)="FeatureZOOM.show()">
+      <span style="float: right;"><i class="fa fa-search" aria-hidden="true"></i></span></button>
+
+    <app-modal #FeatureZOOM class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">Zoom to feature</ng-container>
+      <ng-container class="app-modal-body">
+
+        <form [formGroup]="FormModalSearch" (ngSubmit)="SearchFeature2()">
+          <div>
+            <label for="type" style="margin-top:5px">Choose the layer </label>
+            <select class="form-select" formControlName="layer" id="ModalProject">
+              <option *ngFor="let lyrs of layers_project " value={{lyrs}}>{{lyrs}}</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="exampleFormControlInput1" class="form-label">insert the id </label>
+            <input type="email" class="form-control" id="inputId" formControlName="inputId">
+          </div>
+
+          <button type="submit" class="btn btn-warning box-shadow--8dp" id="btnzoom">zoom </button>
+
+        </form>
+
+      </ng-container>
+      <ng-container class="app-modal-footer">
+
+
+        <button type="button" class="btn btn-labeled btn-light box-shadow--8dp" style="float: right;" (click)="FeatureZOOM.hide()">
+          <span class="btn-label"><i class="fa fa-remove"></i></span>Close
+        </button>
+
+      </ng-container>
+    </app-modal>
+
+    <!----------------  Button to refresh layers displayed------------>
+    <!---------------- ----------------------------------------->
+
+    <button id="refresh" (click)="refreshLayers()">
+      <span style="float: right;"><i class="fa fa-refresh" aria-hidden="true"></i>
+      </span>
+    </button>
+
+
+    <!----------------  Button to change the style of layer----------->
+    <!---------------- ----------------------------------------->
+
+    <!-- Button trigger modal -->
+
+
+
+    <button type="button" id="styleLayer" class="button" (click)="modalRoot.show()">
+      <span style="float: right;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+
+    </button>
+    <app-modal #modalRoot class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">Style Layer</ng-container>
+      <ng-container class="app-modal-body">
+
+        <form [formGroup]="FormModalStyleLayer" (ngSubmit)="StyleLayer()">
+
+        <!--choose layer LayerToStyle ColorToStyle-->
+        <div>
+          <label for="type" style="margin-top:5px">Choose layer to edit &nbsp; </label>
+          <select id="LayerCarteStyle" class="form-select" formControlName="LayerToStyle">
+            <option disabled>Choose a layer to edit </option>
+          </select>
+        </div>
+        <br>
+
+        <div>
+          <label for="head">Choose the color of the border </label>
+          <input type="color" id="Color_Picker" name="head" value="#e66465" class="form-control input-lg"
+            styel="height: 35px !important;"  formControlName="ColorToStyle">
+        </div>
+        <br>
+
+        <div>
+          <label for="head">Choose the color to fill with</label>
+          <input type="color" id="Color_Picker" name="head" value="#e66465" class="form-control input-lg"
+            styel="height: 35px !important;"  formControlName="ColorToStyleFill">
+        </div>
+
+        <br>
+        <div>
+          <label for="type" style="margin-top:5px">Choose the form &nbsp; </label>
+          <select id="StyleForme" class="form-select" formControlName="StyleForme">
+            <option >line</option>
+            <option >triangle</option>
+            <option > polygon</option>
+            <option > diamond</option>
+            <option >rectangle </option>
+            <option > marker</option>
+            <option >coma </option>
+            <option > bookmark</option>
+            <option > hexagon</option>
+            <option >sign </option>
+            <option >ban </option>
+            <option > lozenge</option>
+            <option > square</option>
+
+          </select>
+        </div>
+        <br>
+
+        <div>
+          <label for="type" style="margin-top:5px">Choose the size </label>
+          <input type="number" class="form-control" formControlName="StyleSize" >
+        </div>
+
+       
+        
+        <br>
+        <div >
+        <button type="submit" class="btn btn-warning box-shadow--8dp" id="btn_style_layer">Display</button>
+         </div>
+        </form>
+
+        
+
+      </ng-container>
+      <ng-container class="app-modal-footer">
+        <button type="button" class="btn btn-labeled btn-light box-shadow--8dp" style="float: right;" (click)="modalRoot.hide()">
+          <span class="btn-label"><i class="fa fa-remove"></i></span>Close
+        </button>
+
+      </ng-container>
+    </app-modal>
+
+    <!---------------- ----------------------------------------->
+
+    <!---------------- --------Save Style layers-------------------------->
+
+    <button type="button" class="btn btn-info" id="btn_Save_style" (click)="btn_Save_style()">
+      <span><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></span>
+    </button>
+
+     <!---------------- ----------------------------------------->
+
+    <!------------------------Apply the style registred las time in DB -------------------------->
+    <button type="button" class="btn btn-info" id="btn_Apply_style" (click)="btn_Apply_style()">
+      <span><i class="fa fa-upload" aria-hidden="true"></i>
+      </span>
+    </button>
+  
+  </div>
+
+
+  <!---------------- Popup------------>
+  <!---------------- --------------------->
+  <!-- <div id="popup" class="ol-popup" style="width: 400px;">
+    <a id="popup-closer" class="ol-popup-closer" (click)="popupcloser()"></a>
+    <div id="popup-content">
+    </div>
+  </div> -->
+<div id="popup" class="ol-popup">
+      <a  id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+</div>
+</div>
+
+<app-info-layer></app-info-layer>
+
+
+
+

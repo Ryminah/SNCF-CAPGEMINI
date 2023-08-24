@@ -1,0 +1,379 @@
+/*
+.map {
+    height: 80%;
+    width: 100% ;
+    position: absolute;/*PROPRETY ADDED
+    left: 0px; //PROPRETY ADDED
+  }
+  */
+
+.map {
+ 
+    height: calc(100% - 235px);
+    width: calc(100% - 300px);
+    position: absolute;
+    left: 300px;
+    MARGIN-TOP: 35px; 
+
+
+}
+
+.ol-popup-content .ol-popupfeature .h1 {
+  color: brown;
+}
+
+.h1,
+h1 {
+  background: rgb(98, 159, 230) !important;
+}
+
+#mesure {
+  /* display: flex; : je l'ai ajouté pour aligner toute les element qui existent dans la div*/
+  display: flex;
+  height: 35px;
+  z-index: 3;
+  position: absolute;
+  /*newly added*/
+  background-color: rgb(218, 218, 218);
+  opacity: 0.8;
+  width: calc(100% - 300px);
+  margin-left: 300px;
+}
+
+#edit {
+  /* display: flex : pour aligner toute les element qui existent dans la div*/
+  display: flex;
+}
+
+
+
+#modal-form {
+  margin-left: 1000px;
+}
+
+#featureOptions {
+  height: 35px;
+  z-index: 3;
+  position: absolute;
+  /*newly added*/
+  background-color: rgb(218, 218, 218);
+  opacity: 0.8;
+  width: 100%;
+  margin-top: 407px;
+}
+
+#get_info {
+  margin-left: 270px;
+}
+
+
+/*----------------------------------------------layers switcher---------------------------------*/
+/*------------------   not working ---------------*/
+.layer-switcher {
+  margin-top: 20px;
+}
+
+
+
+#ol-zoom {
+  right: 8px
+}
+
+
+.divDeleteButton {
+  background-color: blue !important;
+}
+
+.divDeleteButton:hover {
+  background-color: blue;
+}
+
+.divDeleteButton.clicked {
+  background-color: rgb(19, 124, 148);
+}
+
+
+#type {
+
+  width: 174px;
+  display: inline-block;
+  height: 33PX;
+}
+
+#LayerCarte {
+  height: 33PX;
+  width: 174px;
+}
+
+#edit {
+  flex: 1;
+}
+
+.ol-full-screen {
+  margin-top: 150px !important;
+  right: .5em !important;
+
+}
+
+/*------------------  VIDEO ---------------*/
+
+#popup {
+  z-index: 3;
+  background-color: rgb(240, 245, 245);
+  border: 2mm ridge rgba(211, 220, 50, .6);
+  /*----To ADD scroll bar  ----*/
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 280px;
+}
+
+.ol-popup:after,
+.ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.ol-popup:after {
+  border-top-color: white;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+
+.ol-popup:before {
+  border-top-color: #cccccc;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+
+.ol-popup-closer:after {
+  content: "✖";
+}
+
+/*------------------  Button form  ---------------*/
+#SNCF_p_tiv {
+
+  visibility: hidden;
+  border-radius: 8px;
+  background-color: rgb(210 233 244);
+}
+
+#SNCF_p_bus_ndv {
+
+  visibility: hidden;
+  border-radius: 8px;
+  background-color: rgb(210 233 244);
+}
+
+#SP4_pont {
+
+  visibility: hidden;
+  border-radius: 8px;
+  background-color: rgb(210 233 244);
+
+}
+
+#SP4_sg_signal{
+  visibility: hidden;
+  border-radius: 8px;
+  background-color: rgb(210 233 244);
+}
+
+#draw_firt_point{
+  display: flex;
+}
+
+#draw_second_point{
+  display: flex;
+}
+
+#Draw_SG_SIGNAL{
+  display: flex;
+}
+
+/*------------------  Button form  ---------------*/
+
+.btn-label {
+  position: relative;
+  left: -12px;
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px 0 0 3px;
+}
+
+.btn-labeled {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.btn {
+  margin-bottom: 10px;
+}
+
+.testheader {
+  background-color: #7c035b !important;
+  opacity: 1 !important;
+}
+
+#FeatureZOOM {
+  display: block;
+  margin: 1px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: inherit;
+  text-align: center;
+  height: 1.375em;
+  width: 1.375em;
+  line-height: .4em;
+  background-color: rgba(0, 60, 136, 0.5);
+  border: none;
+  border-radius: 2px;
+  z-index: 100;
+  margin-top: -334px;
+  margin-left: 11px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#refresh{
+  display: block;
+  margin: 1px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: inherit;
+  text-align: center;
+  height: 1.375em;
+  width: 1.375em;
+  line-height: .4em;
+  background-color: rgba(0, 60, 136, 0.5);
+  border: none;
+  border-radius: 2px;
+  z-index: 100;
+  margin-top: 13px;
+  margin-left: 11px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#styleLayer{
+  display: block;
+  margin: 1px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: inherit;
+  text-align: center;
+  height: 1.375em;
+  width: 1.375em;
+  line-height: .4em;
+  background-color: rgba(0, 60, 136, 0.5);
+  border: none;
+  border-radius: 2px;
+  z-index: 100;
+  margin-top: 13px;
+  margin-left: 11px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#btn_style_layer{
+  margin-left:378px;
+}
+
+#btn_Save_style{
+  display: block;
+  margin: 1px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: inherit;
+  text-align: center;
+  height: 1.375em;
+  width: 1.375em;
+  line-height: .4em;
+  background-color: rgba(0, 60, 136, 0.5);
+  border: none;
+  border-radius: 2px;
+  z-index: 100;
+  margin-top: 13px;
+  margin-left: 11px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#btn_Apply_style{
+
+  display: block;
+  margin: 1px;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: inherit;
+  text-align: center;
+  height: 1.375em;
+  width: 1.375em;
+  line-height: .4em;
+  background-color: rgba(0, 60, 136, 0.5);
+  border: none;
+  border-radius: 2px;
+  z-index: 100;
+  margin-top: 13px;
+  margin-left: 11px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+.box-shadow--8dp {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
+}
+
+#btnzoom{
+  margin-top: 10px;
+  margin-left: 400px;
+}
+
+
+
+.ol-legend {
+  float: left;
+}

@@ -1,0 +1,135 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+#sideBar {
+  width: 300px;
+  float: left;
+  height:  calc(100% + 35px);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #d2e9f4;
+  /*BACKGROUND COLOR*/
+  border: 2pt solid #393c3d;
+  margin-top: 40px;
+}
+
+.col-35 {
+  float: left;
+  width: 8%;
+  margin-top: 5px;
+}
+
+.col-chk {
+  margin-left: 150px;
+}
+
+#btnHeaderCardMap {
+  width: 295px;
+  color: #393c3d;
+  background-color: rgb(206, 209, 208);
+  border-color: rgb(206, 209, 208);
+  
+
+}
+
+#btnDisplayproject{
+  width: 295px;
+  color: #393c3d;
+  background-color: rgb(206, 209, 208);
+  border-color: rgb(206, 209, 208);
+  margin-top: -1px;
+}
+
+#modalPotree{
+  height: 39px;
+  width: 295px;
+  color: #393c3d;
+  background-color: rgb(206, 209, 208);
+  border-color: rgb(206, 209, 208);
+
+}
+#btnPotreeSave{
+  margin-top: 12px;
+  height: 39px;
+  width: 295px;
+  color: #393c3d;
+  background-color: rgb(206, 209, 208);
+  border-color: rgb(206, 209, 208);
+}
+#btnHeaderCardTable {
+  width: 295px;
+  margin: 10px;
+  color: #393c3d;
+  border-color: rgb(206, 209, 208);
+  background-color: rgb(206, 209, 208);
+}
+
+#CreatProjectModal{
+  width: 295px;
+  margin: 10px;
+  color: #393c3d;
+  border-color: rgb(206, 209, 208);
+  background-color: rgb(206, 209, 208);
+
+}
+
+#divBodyCardtable {
+  margin-left: 15px;
+
+}
+
+#divBodyCardMap {
+  margin-left: 10px;
+
+}
+
+#AddLayers{
+  MARGIN-LEFT: 76PX;
+}
+
+#DisplayData {
+  margin-top: 10px;
+  MARGIN-LEFT: 58PX;
+
+}
+
+.MultipleSelect{
+  width: inherit;
+}
+
+ #SaveChangesModal{
+   margin-top: 20px;
+   margin-left: 170px;
+ }
+
+
+ #selectProject{
+  MARGIN-TOP: 10px;
+  margin-left: 7px;
+  margin-right: 5px;
+ }
+
+ #bntselectProject{
+  margin-top: 15px;
+ }
+
+
+ #LayersGeo{
+  width: 465px;
+ }
+
+ #headerCardZoom{
+  margin-top: -9px;
+ }
+
+ #CreatDBGeoModal{
+  width: 295px;
+  margin: 10px;
+  color: #393c3d;
+  border-color: rgb(206, 209, 208);
+  background-color: rgb(206, 209, 208);
+  margin-top: 2px;
+}
+ 

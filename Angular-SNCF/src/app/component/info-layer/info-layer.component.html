@@ -1,0 +1,26 @@
+<div id="DataLayer"  class="overflow-auto" >
+
+    
+  <div class="container" id="tableInfo">
+    <table class="table table-bordered" id="table">
+      <thead class="table-dark">
+         <tr>
+        <th *ngFor="let KeysTab of KeysTableLayer">
+          {{KeysTab}}
+        </th>
+         <tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item2 of TableLayer2  ">
+          <th *ngFor="let item1 of item2">{{item1}} </th>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>
+
+  <!--
+  
+
+  -->
+</div>

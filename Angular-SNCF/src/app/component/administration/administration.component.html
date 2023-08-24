@@ -1,0 +1,220 @@
+<app-nav-bar></app-nav-bar>
+
+  <!-- Navbar -->
+
+  <!-- Page Content -->
+  <div class="container mt-5">
+    <h1>Gestion GeoServer</h1>
+    <hr>
+
+    <!-- Espaces de travail Table -->
+    <h2 class="container mt-5">Espaces de travail</h2>
+    <div class="table-responsive">
+      <table class="table mt-3">
+        <thead class="table-dark">
+          <tr>
+            <th class="text-left">Nom</th>
+            <th class="text-right">Datastores</th>
+            <th></th>
+            <th class="text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Ligne pour chaque espace de travail -->
+          <ng-container *ngIf="workspaces && workspaces.length > 0; else noWorkspace">
+            <tr *ngFor="let workspace of workspaces">
+              <ng-container *ngIf="!workspace.editable; else editMode">
+                <td>{{ workspace.name }}</td>
+              </ng-container>
+              <ng-template #editMode>
+                <td>
+                  <input type="text" class="form-control" [(ngModel)]="newNom"
+                    (keyup.enter)="saveWorkspaceName(workspace)">
+                </td>
+
+              </ng-template>
+              <td>
+                <ng-container *ngIf="workspace.dataStores && workspace.dataStores.length > 0; else noDatastore">
+                  <ul>
+                    <li *ngFor="let dataStore of workspace.dataStores">
+                      {{ dataStore.name }}
+                    </li>
+                  </ul>
+                </ng-container>
+                <ng-template #noDatastore>
+                  Aucun datastore trouvé.
+                </ng-template>
+              </td>
+              <td>
+                <!-- Boutons d'action CRUD -->
+                <button class="btn btn-primary" (click)="toggleEdit(workspace)">Éditer</button>
+                <button class="btn btn-danger" (click)="deleteWorkspace(workspace.name)">Supprimer</button>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #noWorkspace>
+            <tr>
+              <td colspan="4">Aucun workspace trouvé.</td>
+            </tr>
+          </ng-template>
+          <!-- Nouvelle ligne pour la création -->
+          <tr>
+            <td>
+              <input required type="text" class="form-control" placeholder="Nom" id="nom" [(ngModel)]="nom" name="nom">
+            </td>
+            <td class="text-left">Remplissage automatique du chemin</td>
+            <td class="text-right" colspan="2">
+              <button class="btn btn-success" (click)="addWorkspace()">Créer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+    <!-- Entrepots  -->
+    <h2>Entrepôts</h2>
+    <div class="table-responsive">
+      <table class="table mt-3">
+        <thead class="table-dark">
+          <tr>
+            <th class="text-left">Nom</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Ligne pour chaque Entrepot -->
+          <ng-container *ngFor="let workspace of workspaces">
+            <tr *ngFor="let datastore of workspace.dataStores">
+            <td>{{ datastore.name }}</td>
+
+            <td>
+              <!-- Boutons d'action CRUD -->
+              <button class="btn btn-danger" (click)="deleteDataStore(workspace.name, datastore.name)">Supprimer</button>
+            </td>
+          </tr>
+        </ng-container>
+          <!-- Nouvelle ligne pour la création -->
+          <tr>
+
+            <td class="text-right" colspan="2">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creationEntrepot">
+                Créer entrepôt
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <!-- Modal création entrepot  -->
+      <div class="modal fade" id="creationEntrepot" tabindex="-1" aria-labelledby="creationEntrepotLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="creationEntrepotLabel">Création d'entrpôt</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="projet">Choix de l'espace de travail :</label>
+            <select class="form-control" id="dataStore" #selectedWorkspaceDatastore>
+              <option *ngFor="let workspace of workspaces" [value]="workspace.name">
+                {{ workspace.name }}
+              </option>
+            </select>
+            <label for="projet">Nom du nouvel entrepot :</label>
+            <input required type="text" class="form-control" placeholder="Nom du nouvel entrepôt"
+              id="nom_entrepot" [(ngModel)]="nom_entrepot" name="nom_entrepot">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary"
+              (click)="addDatastore(selectedWorkspaceDatastore.value, nom_entrepot)">Créer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+     <!-- Projets  -->
+    <h2>Projets</h2>
+    <div class="table-responsive">
+      <table class="table mt-3">
+        <thead class="table-dark">
+          <tr>
+            <th class="text-left">Nom</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Ligne pour chaque Entrepot -->
+          <ng-container *ngFor="let projet of projetsRecups">
+            <tr >
+            <td>{{ projet.nom }}</td>
+            <td>{{ projet.couches}}</td>
+
+
+            <td>
+              <!-- Boutons d'action CRUD -->
+              <button class="btn btn-danger" (click)="deleteProjet(projet.id)">Supprimer</button>
+            </td>
+          </tr>
+        </ng-container>
+          <!-- Nouvelle ligne pour la création -->
+          <tr>
+
+            <td class="text-right" colspan="2">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creationProjet">
+                Créer projet
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+       <!-- Modal création Projet  -->
+       
+     <div class="modal fade" id="creationProjet" tabindex="-1" aria-labelledby="creationProjet"
+     aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="creationProjet">Création d'entrpôt</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           <label for="projet">Nom du projet</label>
+           <select class="form-control" id="Projet" #selectedWorkspaceProjet (change)="selectProjetCouches(selectedWorkspaceProjet.value)">
+            <option *ngFor="let workspace of workspaces" [value]="workspace.name">
+              {{ workspace.name }}
+            </option>
+          </select>
+          <label for="projet">Choix de la database de spécification</label>
+           <select class="form-control" id="ProjetDB" #selectedDatabaseProjet>
+            <option *ngFor="let projet of projetsRecups" [value]="projet.db_id">
+              {{ projet.db_id }}
+            </option>
+          </select>
+           <label for="projet">Couches</label>
+           <select class="form-control mb-3" multiple id="couches" #selectedCouches>
+            <option *ngFor="let couche of selectedProjetCouches" [value]="couche">
+              {{ couche }}
+            </option>
+          </select>
+          
+                    
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+           <button type="button" (click)="addProjet(selectedWorkspaceProjet.value, selectedCouches.selectedOptions, selectedDatabaseProjet.value)" class="btn btn-success" data-bs-dismiss="modal">Créer</button>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>

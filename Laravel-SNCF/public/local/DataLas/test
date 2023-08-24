@@ -1,0 +1,550 @@
+PS C:\xampp\htdocs\SNCF\Angular-SNCF> ng add @angular/material
+Skipping installation: Package already installed
+? Choose a prebuilt theme name, or "custom" for a custom theme: Indigo/Pink        [ Preview: https://material.angular.io?theme=indigo-pink ]
+? Set up global Angular Material typography styles? Yes  
+? Include the Angular animations module? Include and enable animations
+UPDATE package.json (1632 bytes)
+⠇ Installing packages (npm)...npm ERR! code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+npm ERR! 
+npm ERR! While resolving: @angular/animations@13.3.11
+npm ERR! Found: @angular/core@13.3.7
+npm ERR! node_modules/@angular/core
+npm ERR!   @angular/core@"~13.3.0" from the root project
+npm ERR!   peer @angular/core@"13.3.7" from @angular/common@13.3.7
+npm ERR!   node_modules/@angular/common
+npm ERR!     @angular/common@"~13.3.0" from the root project
+npm ERR!     peer @angular/common@"13.3.7" from @angular/forms@13.3.7
+npm ERR!     node_modules/@angular/forms
+npm ERR!       @angular/forms@"~13.3.0" from the root project
+npm ERR!     3 more (@angular/platform-browser, ...)
+npm ERR!   4 more (@angular/forms, @angular/platform-browser, ...)
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! peer @angular/core@"13.3.11" from @angular/animations@13.3.11
+npm ERR! node_modules/@angular/animations
+npm ERR!   @angular/animations@"~13.3.0" from the root project
+npm ERR!
+npm ERR! Conflicting peer dependency: @angular/core@13.3.11
+npm ERR! node_modules/@angular/core
+npm ERR!   peer @angular/core@"13.3.11" from @angular/animations@13.3.11
+npm ERR!   node_modules/@angular/animations
+npm ERR!     @angular/animations@"~13.3.0" from the root project
+npm ERR!
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force, or --legacy-peer-deps
+npm ERR! to accept an incorrect (and potentially broken) dependency resolution.
+npm ERR!
+npm ERR! See C:\Users\hp\AppData\Local\npm-cache\eresolve-report.txt for a full report.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\hp\AppData\Local\npm-cache\_logs\2022-07-13T12_32_46_855Z-debug-0.log
+✖ Package install failed, see above.
+The Schematic workflow failed. See above.
+PS C:\xampp\htdocs\SNCF\Angular-SNCF>
+
+----------------
+
+PS C:\xampp\htdocs\SNCF\Angular-SNCF> ng update @angular/cli @angular/core --allow-dirty --force       
+The installed Angular CLI version is outdated.
+Installing a temporary Angular CLI versioned 14.0.5 to perform the update.
+✔ Package successfully installed.
+Repository is not clean. Update changes will be mixed with pre-existing changes.
+Using package manager: npm
+Collecting installed dependencies...
+Found 40 dependencies.
+Fetching dependency metadata from registry...
+    404 Not Found - GET https://registry.npmjs.org/@types%2fol-ext - Not found
+                  Package "ng-modal-lib" has an incompatible peer dependency to "@angular/common" (requires "^12.0.0" (extended), would install "14.0.5").
+                  Package "ng-modal-lib" has an incompatible peer dependency to "@angular/core" (requires "^12.0.0" (extended), would install "14.0.5").
+    Updating package.json with dependency @angular-devkit/build-angular @ "14.0.5" (was "13.3.5")...
+    Updating package.json with dependency @angular/cli @ "14.0.5" (was "13.3.5")...
+    Updating package.json with dependency @angular/compiler-cli @ "14.0.5" (was "13.3.7")...
+    Updating package.json with dependency @angular/animations @ "14.0.5" (was "13.3.11")...
+    Updating package.json with dependency @angular/common @ "14.0.5" (was "13.3.7")...
+    Updating package.json with dependency @angular/compiler @ "14.0.5" (was "13.3.7")...
+    Updating package.json with dependency @angular/core @ "14.0.5" (was "13.3.7")...
+    Updating package.json with dependency @angular/forms @ "14.0.5" (was "13.3.7")...
+    Updating package.json with dependency @angular/platform-browser @ "14.0.5" (was "13.3.7")...       
+    Updating package.json with dependency @angular/platform-browser-dynamic @ "14.0.5" (was "13.3.7")...
+    Updating package.json with dependency @angular/router @ "14.0.5" (was "13.3.7")...
+UPDATE package.json (1632 bytes)
+✔ Packages successfully installed.
+** Executing migrations of package '@angular/cli' **
+
+> Remove 'defaultProject' option from workspace configuration.
+  The project to use will be determined from the current working directory.
+UPDATE angular.json (3490 bytes)
+  Migration completed.
+
+> Remove 'showCircularDependencies' option from browser and server builders.
+  Migration completed.
+
+> Replace 'defaultCollection' option in workspace configuration with 'schematicCollections'.
+  Migration completed.
+
+> Update Angular packages 'dependencies' and 'devDependencies' version prefix to '^' instead of '~'.   
+UPDATE package.json (1632 bytes)
+✔ Packages installed successfully.
+  Migration completed.
+
+> Remove 'package.json' files from library projects secondary entrypoints.
+  Migration completed.
+
+> Update TypeScript compilation target to 'ES2020'.
+UPDATE tsconfig.json (890 bytes)
+  Migration completed.
+
+** Executing migrations of package '@angular/core' **
+
+> As of Angular version 13, `entryComponents` are no longer necessary.
+  Migration completed.
+
+> In Angular version 14, the `pathMatch` property of `Routes` was updated to be a strict union of the two valid options: `'full'|'prefix'`.
+  `Routes` and `Route` variables need an explicit type so TypeScript does not infer the property as the looser `string`.
+  Migration completed.
+
+> As of Angular version 14, Forms model classes accept a type parameter, and existing usages must be opted out to preserve backwards-compatibility.
+UPDATE src/app/component/layers/layers.component.ts (11757 bytes)
+  Migration completed.
+
+PS C:\xampp\htdocs\SNCF\Angular-SNCF>
+
+
+________________form
+[disabled]="isEnabled" 
+
+
+LINESTRING Z (930090.3349 6904445.9066 167.6338,930087.9392 6904460.331 167.6306,930085.5974 6904474.1343 167.6054,930084.7988 6904478.5248 167.6001,930083.9972 6904482.5121 167.5965,930083.1941 6904486.121 167.5896,930082.414 6904489.3333 167.5826,930081.5093 6904492.7177 167.5704,930080.6566 6904495.6135 167.5633,930079.6149 6904498.8419 167.5515,930078.5442 6904501.8985 167.5434,930077.5125 6904504.6248 167.5373,930076.3658 6904507.4556 167.5339,930075.2045 6904510.1605 167.5215,930073.9453 6904512.8867 167.5171,930072.595 6904515.6724 167.51,930071.0301 6904518.7387 167.5091,930069.1087 6904522.3092 167.5094,930067.2294 6904525.6462 167.502,930063.9887 6904531.1378 167.5027,930059.4813 6904538.6305 167.4946,930055.7817 6904544.8224 167.4889,930055.1634 6904545.8836 167.5047)
+
+Dans le cadre du projet Data Etudes avec la SNCF, 
+qu’est l’un des premiers groupes mondiaux de mobilité et de logistique, 
+qui consiste à la création et la gestion de leurs bases de données, un ensemble d’application SIG ont 
+été développées sous la forme de plugins implémenter dans des logiciels SIG. Pour des mesures de qualité, les producteurs de données sont répartis en deux groupes indépendants et partent des mêmes éléments initiaux pour produire le même résultat. Pour cela, les différents applicatifs sont développés dans deux « versions » distinctes qui utilisent des technologies différentes.la première version implémenté dans QGIS et développé avec Python et la deuxième version implémenté dans Arcmap et développé avec C#.
+
+
+--------------
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchFearture">
+      Search feature
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchFearture" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="FormModalSearch" (ngSubmit)="SearchFeature()">
+
+            <div>
+              <label for="type" style="margin-top:5px">Choose the layer  </label>
+              <select id="ModalProject" class="form-select"  (change)='SearchSelected()' formControlName="layer">
+              </select>
+            </div>
+
+            <div>
+              <label for="type" style="margin-top:5px">Choose the layer  </label>
+              <select id="ModalProject" class="form-select"   formControlName="attributs">
+              </select>
+            </div>
+
+
+            <div>
+              <label for="type" style="margin-top:5px">Choose the layer  </label>
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username" 
+              aria-describedby="basic-addon1" formControlName="requete">
+    
+            </div>
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+  ---------------------------------
+  //create gejoson that handle long and lat and create geom
+      this.searchsource = new Feature({
+        geometry: new Point([long, lat]),
+        name: 'Test Point '
+      });
+
+      //create vector Layer to be added to map 
+      const geoJsonObject = new GeoJSON().writeFeaturesObject([this.searchsource]);
+
+      this.layer = new VectorLayer({
+        source: new VectorSource({
+          features: new GeoJSON().readFeatures(geoJsonObject, { featureProjection: 'EPSG:3857' })
+        }),
+
+      });
+
+________________form // 
+this.dataService.sendGeometryFeature(this.FeatureGeometrySend);
+_________________________
+  <div id="featureOptions">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchFearture">
+      Search feature
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="searchFearture" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="FormModalSearch" (ngSubmit)="SearchFeature()">
+
+            <div>
+              <label for="type" style="margin-top:5px">Choose the layer  </label>
+              <select id="ModalProject" class="form-select"   formControlName="layer" >
+              </select>
+            </div>
+
+            <div >
+              <label for="exampleFormControlInput1" class="form-label">insert the id </label>
+              <input type="email" class="form-control" id="exampleFormControlInput1"  id="inputId" >
+            </div>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <!----------------------------------------------------------------------------------------->
+
+    <button (click)="select_feature()" id="select_feature" disabled="true" type="button">Select</button>
+    <button (click)="create_feature2()" id="create_feature" disabled="true">Create</button>
+    <button (click)="modify_feature2()" id="modify_feature" disabled="true">Modify </button>
+    <button (click)="delete_feature2()" id="delete_feature" disabled="true">Delete feature</button>
+    <button (click)="toggle_editing()" id="toggle_editing" style="background-color: rgb(239, 239, 239);">Toggle
+      Editing</button>
+
+    <!-------------------------------- butom Form  p_tiv------------------------->
+    <!---------------- --------------------------------------------------------->
+
+    <button type="button" class="button" id='SNCF_p_tiv' (click)="SNCF_p_tiv.show()">P_TIV</button>
+
+    <app-modal id="myModal" #SNCF_p_tiv class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">SP3 : p_tiv</ng-container>
+      <ng-container class="app-modal-body">
+        <!----------------here--------------------->
+
+        <form [formGroup]="FormLayerPtiv" (ngSubmit)="FormLayerPtivFun()">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">FID</label>
+            <input type="email" class="form-control" id="fid" aria-describedby="emailHelp" placeholder="Enter "
+              formControlName="fid" [ngClass]="{ 'is-invalid': submitted && f['fid'].errors }">
+
+            <div *ngIf="f['fid'].errors" class="invalid-feedback">
+              <div *ngIf="f['fid'].errors['required']">Fullname is required</div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">ID Objet</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="id_objet"
+              aria-describedby="emailHelp" [ngClass]="{ 'is-invalid': submitted && f['id_objet'].errors }">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">IMU</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="imu"
+              aria-describedby="emailHelp" [ngClass]="{ 'is-invalid': submitted && f['imu'].errors }">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Type</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="type"
+              aria-describedby="emailHelp" [ngClass]="{ 'is-invalid': submitted && f['type'].errors }">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Sens Principal</label>
+            <select class="form-select" aria-label="Default select example" id="exampleFormControlSelect1"
+              formControlName="sens_principal" [ngClass]="{ 'is-invalid': submitted && f['sens_principal'].errors }">
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>I</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Status</label>
+            <select class="form-select" aria-label="Default select example" id="exampleFormControlSelect1"
+              formControlName="etat" [ngClass]="{ 'is-invalid': submitted && f['etat'].errors }">
+              <option value="APP"> APPARIE </option>
+              <option value="SUP">SUPPRIMER </option>
+              <option value="INS"> INSTANCIE</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Date</label>
+            <div class="input-group date" id="datepicker">
+              <input type="text" class="form-control" formControlName="date_heure_maj"
+                [ngClass]="{ 'is-invalid': submitted && f['date_heure_maj'].errors }">
+              <span class="input-group-append">
+                <span class="input-group-text bg-white d-block">
+                  <i class="fa fa-calendar"></i>
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1"> schema name </label>
+            <input type="email" class="form-control" formControlName="nom_schema"
+              [ngClass]="{ 'is-invalid': submitted && f['nom_schema'].errors }">
+          </div>
+
+          <!---------------- button map --------------------->
+          <div class="form-group">
+
+
+            <label for="exampleInputEmail1"> Choose the first P_bus_ndv </label>
+            <div style=" display: flex;">
+              <input class="form-control" id="input_p_bus_ndv_1" value="" formControlName="id_ndv1"
+                [ngClass]="{ 'is-invalid': submitted && f['id_ndv1'].errors }"> &nbsp;
+              <button (click)="p_bus_ndv_1()" type="button" class="btn btn-info" id="p_bus_ndv_1" style="margin: auto;">
+                <span style="float: right;"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+              </button>
+            </div>
+
+            <label for="exampleInputEmail1"> Choose the second P_bus_ndv </label>
+            <div style=" display: flex;">
+              <input class="form-control" id="input_p_bus_ndv_2" value="" formControlName="id_ndv2"
+                [ngClass]="{ 'is-invalid': submitted && f['id_ndv2'].errors }">&nbsp;
+              <button (click)="p_bus_ndv_2($event)" type="button" class="btn btn-info" id="p_bus_ndv_2"
+                style="margin: auto;"> <span style="float: right;"><i class="fa fa-map-marker"
+                    aria-hidden="true"></i></span></button>
+            </div>
+
+          </div>
+
+          <!----------------draw and submit--------------------->
+          <div>
+            <br>
+            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+            <button (click)="Draw_p_bus_ndv()" type="button" class="btn btn-labeled btn-info" id="Darw_p_bus_ndv">
+              <span class="btn-label"> <i class="fa fa-pencil-square " aria-hidden="true"></i></span> Draw</button>
+            &nbsp; &nbsp;&nbsp;
+            <button (click)="delete_p_bus_ndv()" type="button" class="btn btn-labeled btn-info" id="Darw_p_bus_ndv">
+              <span class="btn-label"> <i class="fa fa-trash " aria-hidden="true"></i></span>delete</button>
+            &nbsp; &nbsp;&nbsp;
+            <button type="submit" class="btn btn-labeled btn-success">
+              <span class="btn-label"><i class="fa fa-check "></i></span>Save</button>
+          </div>
+
+        </form>
+
+        <!----------------here -------------------->
+      </ng-container>
+      <ng-container class="app-modal-footer">
+        <button type="button" class="btn btn-labeled btn-light" style="float: right;" (click)="SNCF_p_tiv.hide()">
+          <span class="btn-label"><i class="fa fa-remove"></i></span>Close
+        </button>
+      </ng-container>
+    </app-modal>
+    <!---------------- --------------------->
+
+    <!-------------------------------- butom Form  p_bus_ndv ------------------------>
+    <!---------------- --------------------------------------------------------->
+
+
+
+    <button type="button" class="button" id='SNCF_p_bus_ndv' (click)="SNCF_p_bus_ndv.show()">SNCF_p_bus_ndv</button>
+
+    <app-modal id="myModal" #SNCF_p_bus_ndv class="modal-demo" [maximizable]="true" [backdrop]="false">
+      <ng-container class="app-modal-header">SP3 : p_bus_ndv</ng-container>
+      <ng-container class="app-modal-body">
+        <h3>MODAL DIALOG</h3>
+        <p>SNCF_p_bus_ndv.</p>
+      </ng-container>
+      <ng-container class="app-modal-footer">
+
+        <button type="button" class="button button3" (click)="SNCF_p_bus_ndv.hide()">Delete</button>
+        <button type="button" class="button button1" (click)="SNCF_p_bus_ndv.hide()">Save</button>
+        <button type="button" class="button button2" style="float: right;" (click)="SNCF_p_bus_ndv.hide()">Close
+        </button>
+      </ng-container>
+    </app-modal>
+
+ 
+
+  </div>
+
+
+  ---------------------------- ZOOM TO FEATURE-------------------------
+   SearchFeature2() {
+
+    //console.log((<HTMLInputElement>document.getElementById('ModalProject')).value);
+    //console.log((<HTMLInputElement>document.getElementById('inputId')).value);
+
+    var ModalProject = this.FormModalSearch.value.layer
+    var inputId = this.FormModalSearch.value.inputId
+    console.log(ModalProject)
+    console.log(inputId)
+
+
+    var output = {
+      "ProjectName": this.dataProject.databaseName,
+      "ProjectLayer": ModalProject,
+      "inputId": inputId,
+
+    }
+    var outputDB = JSON.stringify(output);
+    console.log(typeof(outputDB));
+    // nous envoyons le output ;nom db , layer and id et nous récupérons la geometry 
+    this.http
+      .post('http://127.0.0.1:8000/api/GetGeometryByLayerNameAndID?request=' + outputDB, null)
+      .subscribe((response: object) => {
+        console.log('data send');
+        this.FeatureGeometry = response;
+        this.FeatureGeometrySend = this.FeatureGeometry[0].st_asgeojson;
+        console.log(this.FeatureGeometrySend);
+
+        const vectorSource = new VectorSource({
+          features: new GeoJSON().readFeatures(this.FeatureGeometrySend, { featureProjection: 'EPSG:3857' }),
+        });
+
+        this.layerZoom = new VectorLayer({
+          source: vectorSource,
+        });
+        
+        // this.map.addLayer(this.layerZoom);
+       
+        setTimeout(() => {
+  
+          var style = new Style({
+            //for the point
+            image: new Circle({
+              stroke: new Stroke({
+                color: 'rgba(60, 179, 113, 1.0)',
+                width: 5
+              }),
+              radius: 3
+            }),
+            //for the polyline
+            stroke: new Stroke({
+              width: 6,
+              color: [60, 179, 113, 0.8],
+            }),
+          })
+
+          var search= ModalProject+'.'+inputId
+          console.log(search)
+          var feature = this.vectorGeoserver.getSource().getFeatureById(search);
+          console.log(feature);
+          feature.setStyle(style);
+        
+          var layerExtent = this.layerZoom.getSource().getExtent();
+          console.log("layerExtent", layerExtent)
+
+          const proj44 = (proj4 as any).default;
+
+          proj44.defs([
+            ['EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs'],
+            ['EPSG:2154', '+proj=lcc +lat_0=46.5 +lon_0=3 +lat_1=49 +lat_2=44 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs']
+          ]);
+          register(proj44)
+          //var trans = layerExtent.transform(src, dest);
+
+          var trans = transformExtent(layerExtent, 'EPSG:2154', 'EPSG:3857')
+          console.log('after', trans);
+
+          if (trans) {
+
+            this.map.getView().fit(trans);
+          }
+        }, 2000);
+
+      })
+
+
+
+  }
+------------------------------Laravel
+// Insérer toutes les données dans une table temporaire
+        $sql1='SELECT nom FROM  public.db_projects where id='.$Pid;
+        $tables = DB::select( $sql1);
+      
+     
+
+        //$object = json_decode(json_encode($tables));
+        //$array=var_dump($object);
+        //error_log('here');
+        //error_log($array(1));
+        
+        // $nameProject=response()->json($tables);
+        // error_log($tables);
+        // error_log(gettype($tables));
+
+
+       // $tst =json_encode($tables );
+       // error_log($tst);
+       // error_log(gettype($tst));
+        //$tst2 =explode(':', $tst);
+       // error_log($tst2);
+        // return $nameProject;
+
+
+
+-----
+this.id_pas_user=this.Data_login.id_pas;
+       console.log('id_pas', this.id_pas_user)
+       this.nom_schema=this.Data_login.nom_schema;
+       console.log('nom_schema',this.nom_schema)
+
+
+
+------------------------------
+for (let i = 0; i < features.length; i++) {
+      var id_f = features[i].getId();
+      var nom_spl = (<string>id_f).split(".");
+      var nom = nom_spl[0];
+     
+     if(nom=='p_bus_ndv'){
+      this.legend1.addItem({
+        title: 'hajar',
+        typeGeom: 'Point',
+        style: style_user
+      });
+
+      break;
+     }
+    
+    }
+
+
+---------------------------------
+<label for="path">Document</label>
+
+              <div class="custom-file">
+                <input id="path" type="file" name="file" class="custom-file-input" required>
+                <label class="custom-file-label" for="inputGroupFile04">Choisir un fichier</label>
+              </div>

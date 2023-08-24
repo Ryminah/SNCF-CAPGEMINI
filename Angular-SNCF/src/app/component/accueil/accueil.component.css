@@ -1,0 +1,40 @@
+      /* Styles CSS */
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .containerx {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .navbar {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+      }
+
+      .navbar h1 {
+        margin: 0;
+      }
+
+      .buttons-wrapper {
+        margin-top: 100px;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        font-size: 18px;
+        margin: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .button:hover {
+        background-color: #555;
+      }

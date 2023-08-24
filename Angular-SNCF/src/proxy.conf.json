@@ -1,0 +1,35 @@
+{
+
+    "/qgis/*": {
+        "target": "http://localhost:8001",
+        "secure": false,
+        "loglevel": "debug",
+        "changeOrigin": false,
+        "pathRewrite": {"^/qgis/*" : ""}
+
+    },
+
+
+    "/wfsGeoserv/*": {
+        "target": "http://localhost:8080",
+        "secure": false,
+        "loglevel": "debug",
+        "changeOrigin": false,
+        "pathRewrite": {"^/wfsGeoserv/*" : ""}
+
+    },
+
+
+  "/GeoservHTTP/*": {
+        "target": "http://localhost:8080/geoserver",
+        "secure": false,
+        "loglevel": "debug",
+        "changeOrigin": false,
+        "pathRewrite": {"^/GeoservHTTP/*" : ""}
+
+    }
+
+
+
+}
+

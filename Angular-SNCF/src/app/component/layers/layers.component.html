@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="sideBar">
+    <!-- dropdown de toute les couches-->
+    <!--
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" id='layers'
+      (change)="onChangeLayer($event)">
+      <option selected>Open this to select the layer</option>
+      <option *ngFor="let lyrs of layers " value={{lyrs.tablename}}>{{lyrs.tablename}}</option>
+    </select>
+    -->
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- -----------------------------------collapse card to display llayers in the map ------------------------------------->
+
+    <!-- checkbox  de toute les couches pour les afficher -->
+    <!--
+    <div classe="card">
+      <div classe="headerCard">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2"
+          aria-expanded="false" aria-controls="collapseExample" id="btnHeaderCardMap">
+          Layers map <span style="float: right;"><i class="bi bi-layers-fill"></i></span>
+        </button>
+      </div>
+      <div classe="bodyCard" id="divBodyCardMap">
+        <div class="collapse" id="collapseExample2">
+
+          <div>
+            <form [formGroup]="form" (ngSubmit)="Submit()">
+              <div class="form-check" *ngFor="let lyrs of layers ">
+                <input class="form-check-input" type="checkbox" name="{{lyrs.tablename}}" [value]="lyrs.tablename"
+                  (change)="onCheckboxChange($event,lyrs.tablename)">
+                <label class="form-check-label" for="flexCheckChecked">
+                  {{lyrs.tablename}}
+                </label>
+              </div>
+              <button type="submit" class="btn btn-outline-primary" id="AddLayers">Add layers </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  -->
+
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- ----------------------------------------------------------------------------------------------->
+
+
+
+    <!-- -----------------------------------collapse card to display table of layers---------------------->
+    <!-- checkbox  de toute les couches pour afficher la table attributaire -->
+    <!-- 
+    <div classe="card">
+      <div classe="headerCard">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+          aria-expanded="false" aria-controls="collapseExample" id="btnHeaderCardTable">
+          Layers attribut <span style="float: right;"><i class="bi bi-file-earmark-spreadsheet-fill"></i></span>
+        </button>
+      </div>
+
+      <div classe="bodyCard" id="divBodyCardtable">
+        <div class="collapse" id="collapseExample">
+
+          <div>
+            <form [formGroup]="form" (ngSubmit)="SubmitLyrAttrib()">
+              <div class="form-check" *ngFor="let lyrs of layers ">
+                <input class="form-check-input" type="checkbox" name="{{lyrs.tablename}}" [value]="lyrs.tablename"
+                  (change)="onCheckboxChangeAttrib($event,lyrs.tablename)">
+                <label class="form-check-label" for="flexCheckChecked">
+                  {{lyrs.tablename}}
+                </label>
+              </div>
+              <button type="submit" class="btn btn-outline-primary" id="DisplayData">Display Data</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  -->
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- -----------------------------------Modal to create a new project QGIS---------------------->
+    <!-- Button trigger modal -->
+    <!--
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      id="CreatProjectModal">
+      New poject <span style="float: right;"><i class="bi bi-file-earmark-plus-fill"></i></span>
+    </button>
+     -->
+
+    <!-- Modal -->
+    <!--
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create a new poject</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="ProjectForm" (ngSubmit)="SubmitLayerChoise()">
+
+             
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">The project name:</label>
+                <input type="text" class="form-control" id="Project-name" formControlName="nameproject">
+              </div>
+             
+
+              <div class="MultipleSelect">
+                <select class="selectpicker" aria-label=".form-select-sm example" id='layers' data-width=100% multiple
+                  data-selected-text-format="count > 3" title='Choose one or multiple...'
+                  (change)="onChooseLayer($event)" formControlName="LayersChosen">
+                  <option>Open this to select the layer</option>
+
+                  <option *ngFor="let lyrs of layers " value={{lyrs.tablename}}>{{lyrs.tablename}}</option>
+              
+
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-success" id="SaveChangesModal">Save changes</button>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  -->
+
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- ----------------------------------- card to display a new project  ------------------------>
+    <div classe="card">
+      <!--<div classe="headerCard">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3"
+          aria-expanded="false" aria-controls="collapseExample" id="btnDisplayproject">
+          Display a project <span style="float: right;"><i class="bi bi-map-fill"></i></span>
+        </button>
+      </div> -->
+      <div classe="bodyCard" id="divBodyCardProject">
+        <div class="collapse" id="collapseExample3">
+
+          <div>
+            <form [formGroup]="ProjectFormDisplay" (ngSubmit)="DisplayProject2()">
+
+              <div id="selectProject">
+
+                <label for="recipient-name" class="col-form-label">Choose the project</label>
+                <select class="form-select" aria-label="Default select example" formControlName="nameProjectToDisplay2"
+                  #mySelect (change)='onOptionsSelected($event)'>
+                  <option selected>Open to choose the project </option>
+                  <option *ngFor="let prjct of projects " value={{prjct.id}}>{{prjct.nom}}</option>
+                </select>
+
+              </div>
+
+              <div>
+                <label for="exampleInputEmail1" class="form-label">The environnement</label>
+                <input class="form-control" id="environ" aria-describedby="emailHelp" disabled="disabled">
+              </div>
+
+
+              <div>
+                <label for="exampleInputEmail1" class="form-label">The Sous process</label>
+                <input class="form-control" id="s_p" aria-describedby="emailHelp" disabled="disabled">
+              </div>
+
+
+              <div>
+                <label for="exampleInputEmail1" class="form-label">The version</label>
+                <input class="form-control" id="v_r_s" aria-describedby="emailHelp" disabled="disabled">
+              </div>
+
+
+              <div id="selectProject2">
+                <!-- choose the layers -->
+                <label for="recipient-name" class="col-form-label">The layers</label>
+
+                <!-- chooose the layers to add to the project  -->
+                <!-- Populated WITH TS-->
+                <!--Je suis là ; la classe class="selectpicker" ne marche pas je dois trouver un autre moyen -->
+                <select id="selectorrr" formControlName="namesLayer2" data-width=100% class="form-select" multiple
+                  size="2" aria-label="size 2 select example">
+                </select>
+              </div>
+
+              <!--
+               Populated from the backend
+              <div class="MultipleSelect">
+                <select class="selectpicker" aria-label=".form-select-sm example" data-width=100% multiple id="test">
+                  <option>Open this to select the layer</option>
+                  <option *ngFor="let layer of layersProject2" value="layer">{{layer}}</option>
+                 <option value='sg_limvit'>sg_limvit</option>
+                 <option value='sg_signal'>sg_signal</option>
+
+                <option value='p_bus_ndv'>p_bus_ndv</option>
+                 <option value='p_tiv'>p_tiv</option>
+
+                </select>
+              </div>
+              -->
+
+              <!-- Populated manuellement-->
+              <!-- <div class="MultipleSelect">
+                <select class="selectpicker" aria-label=".form-select-sm example" data-width=100% multiple>
+                  <option>Open this to select the layer</option>
+                <option *ngFor="let layer of layersProject2" value={{layer}}>{{layer}}</option>
+                  <option value='sg_limvit'>sg_limvit</option>
+                  <option value='sg_signal'>sg_signal</option>
+
+                 <option value='p_bus_ndv'>p_bus_ndv</option>
+                 <option value='p_tiv'>p_tiv</option>
+                </select>
+              </div>
+            -->
+
+
+              <div id="bntselectProject">
+                <button type="submit" class="btn btn-outline-primary" id="AddLayers"> Display </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- -----------------------------------Modal to create a new project from a data base  ---------------------->
+    <div classe="card">
+
+      <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modalgeoserver"
+        id="CreatProjectModal">
+       Create new project  <span style="float: right;"><i class="bi bi-file-earmark-plus-fill"></i></span>
+      </button> -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="Modalgeoserver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create a new poject</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="ProjectFormGeo" (ngSubmit)="SubmitNewProject()">
+
+                <!-- choose the  data base  -->
+                <label for="recipient-name" class="col-form-label">The data base</label>
+                <select class="form-select" aria-label="Default select example" formControlName="namedatabase"
+                  (change)='onDBSelected($event)' [ngClass]="{ 'is-invalid': submitted && f['namedatabase'].errors }">
+                  <option selected>Open this select menu</option>
+                  <option *ngFor="let db of databases " value={{db.id}}>{{db.nom}}</option>
+                </select>
+                <div *ngIf="f['namedatabase'].errors" class="invalid-feedback">
+                  <div *ngIf="f['namedatabase'].errors['required']">Name ofthe data base is required</div>
+                </div>
+
+
+                <!-- input the name of the project  -->
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">The project name:</label>
+                  <input type="text" class="form-control" id="Project-name" formControlName="nameprojectgeo"
+                    [ngClass]="{ 'is-invalid': submitted && f['nameprojectgeo'].errors }">
+
+                  <div *ngIf="f['nameprojectgeo'].errors" class="invalid-feedback">
+                    <div *ngIf="f['nameprojectgeo'].errors['required']">Name of the project is required</div>
+                  </div>
+
+                </div>
+                <!-- chooose the layers to add to the project  -->
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Choose Layers </label><br>
+                  <select id='layers' multiple id="LayersGeo" size="3" aria-label="size 3 select example"
+                    title='Choose one or multiple...' (change)="onChooseLayer($event)" formControlName="LayersGeo"
+                    [ngClass]="{ 'is-invalid': submitted && f['LayersGeo'].errors }">
+                    <option *ngFor="let lyrs of layersProjectGEO " value={{lyrs}}>{{lyrs}}</option>
+
+                    <!-- <option value='p_tiv'>p_tiv</option>
+                    <option value='p_bus_ndv'>p_bus_ndv</option>
+                    <option value='bal_kvb'>bal_kvb</option>
+                    <option value='sg_limvit'>sg_limvit</option>
+                    <option value='sg_signal'>sg_signal</option>-->
+                  </select>
+                  <div *ngIf="f['LayersGeo'].errors" class="invalid-feedback">
+                    <div *ngIf="f['LayersGeo'].errors['required']">choose at least one layer</div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" id="SaveChangesModal">Save changes</button>
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-------------------------------- search for a layers by attribute : now it's in the cart comp------------------------>
+    <!----------------------------------------------------------------------------------------->
+    <!-- Button trigger modal -->
+    <!-- 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchFearture22">
+      Search feature
+    </button>
+      -->
+    <!--  Modal -->
+    <!-- <div class="modal fade" id="searchFearture22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="FormModalSearch" (ngSubmit)="SearchFeature()">
+
+            <div>
+              <label for="type" style="margin-top:5px">Choose the layer  </label>
+              <select id="ModalProject" class="form-select"  (change)='SearchSelected()' formControlName="layer" >
+              </select>
+            </div>
+
+            <div >
+              <label for="exampleFormControlInput1" class="form-label">insert the id </label>
+              <input type="email" class="form-control" id="exampleFormControlInput1"  id="inputId" >
+            </div>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+  -->
+
+    <!-------------------------------------------------------------------------------------------------------------->
+
+    <!-- -----------------------------------collapse card to display table of layers : Méthode 2---------------------->
+
+    <div classe="card">
+      <!-- <div classe="headerCard" id="headerCardZoom">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+          aria-expanded="false" aria-controls="collapseExample" id="btnHeaderCardTable">
+          Display Layer's attributs <span style="float: right;"><i class="bi bi-file-earmark-spreadsheet-fill"></i></span>
+        </button>
+      </div> -->
+
+      <div classe="bodyCard" id="divBodyCardtable">
+        <div class="collapse" id="collapseExample">
+
+          <div>
+            <form [formGroup]="DisplayTableAttribute" (ngSubmit)="DisplayTableAttribute2()">
+
+              <div id="selectProject2">
+
+                <label for="recipient-name" class="col-form-label">Choose the project</label>
+                <select class="form-select" aria-label="Default select example" formControlName="nameProjectToDisplay2"
+                  #mySelect (change)='SelectedPojectDisplay($event)' formControlName="Project"
+                  style="width: 279px !important;">
+                  <option selected>Open to choose the project </option>
+                  <option *ngFor="let prjct of projects " value={{prjct.id}}>{{prjct.nom}}</option>
+                </select>
+
+              </div>
+
+
+              <div id="selectLayer2">
+                <!-- choose the layers -->
+                <label for="recipient-name" class="col-form-label">The layers</label>
+
+                <select id="popupaltLayers" data-width=100% class="form-select" size="1"
+                  style="width: 279px !important;" aria-label="size 1 select example" formControlName="Layer">
+
+                </select>
+              </div>
+              &nbsp;
+              &nbsp;
+              <button type="submit" class="btn btn-outline-primary" id="DisplayData">Display Data</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- ----------------------------------------------------------------------------------------------->
+    <!-- ----------------------------------------------------------------------------------------------->
+
+    <!--------------------------------------------------------------------------------------------------->
+
+    <!-- -----------------------------------collapse card to Create a new DB in Geoserver ------------>
+    <!-- ----------------------------------i'm workin HERE------------>
+    <div classe="card">
+      <!-- Button trigger modal -->
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        id="CreatDBGeoModal">
+        Create new Store<span style="float: right;"><i class="fa fa-database" aria-hidden="true"></i></span>
+      </button> -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Store</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="DataStore" (ngSubmit)="SaveNewStore()">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Name of new store Geoserver</label>
+                  <input type="email" class="form-control" id="NameNewStore" aria-describedby="emailHelp"
+                    [ngClass]="{ 'is-invalid': submitted2 && g['DataStoreName'].errors }"
+                    formControlName="DataStoreName">
+
+                  <div *ngIf="g['DataStoreName'].errors  " class="invalid-feedback">
+                    <div *ngIf="g['DataStoreName'].errors['required'] ">le champs est obligatoire</div>
+                  </div>
+                </div>
+
+                <!-- Choose the environment -->
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Choose the environment</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="envrnmt"
+                    [ngClass]="{ 'is-invalid': submitted2 && g['envrnmt'].errors }">
+                    <option value="recette">Recette</option>
+                    <option value="production">Production</option>
+                  </select>
+
+                  <div *ngIf="g['envrnmt'].errors  " class="invalid-feedback">
+                    <div *ngIf="g['envrnmt'].errors['required'] ">le champs est obligatoire</div>
+                  </div>
+                </div>
+
+
+                <!-- Choose the sous precessus -->
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Choose the sous process</label>
+                  <select class="form-select" aria-label="Default select example" formControlName="SP"
+                    [ngClass]="{ 'is-invalid': submitted2 && g['SP'].errors }">
+                    <option value="SP3">SP3</option>
+                    <option value="SP4">SP4</option>
+                  </select>
+
+                  <div *ngIf="g['SP'].errors  " class="invalid-feedback">
+                    <div *ngIf="g['SP'].errors['required'] ">le champs est obligatoire</div>
+                  </div>
+
+                </div>
+
+                <!-- insert the version -->
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Insert the version</label>
+                  <input formControlName="Version" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted2 && g['Version'].errors }">
+
+                  <div *ngIf="g['Version'].errors  " class="invalid-feedback">
+                    <div *ngIf="g['Version'].errors['required'] ">le champs est obligatoire</div>
+                  </div>
+
+                </div>
+
+
+                <label for="exampleInputEmail1" class="form-label">The layers </label>
+                <!-- insert the version 
+                <div class="mb-3" style="display: flex ">
+                  <input type="email" class="form-control" id="LayerNewStore" aria-describedby="emailHelp"> &nbsp; 
+                  <button type="button" class="btn btn-info" style="margin: auto;" (click)="AddLayer()">
+                    <span style="float: right;"><i class="fa fa-plus-square" aria-hidden="true"></i></span>
+                  </button>
+                </div>
+                -->
+                <select data-width=100% class="form-select" multiple size="2" aria-label="size 2 select example">
+                  <option>p_bus_NDV</option>
+                  <option>p_TIV</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="margin-left:408px">Save</button>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!------------------------------------------------------------------------------------------------->
+    <!-----------------------------------------Potree : display Point Cloud ------------------------------------------------>
+
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" id="modalPotree" data-bs-toggle="modal" data-bs-target="#exampleModalPotree">
+      Display Point Cloud <span style="float: right;"><i class="fa fa-cloud" aria-hidden="true"></i></span>
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalPotree" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Point Cloud</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="PotreeData" (ngSubmit)="DisplayPotree()">
+              <label> Choose a point cloud</label>
+              <!-- file name -->
+              <select class="form-select" aria-label="Default select example" formControlName="NamePotree">
+                <option selected>Open this select menu</option>
+                <option *ngFor="let data of PotreeDB " value={{data.fileurl}}>{{data.filename}}</option>
+              </select>
+              <br>
+
+
+              <button type="submit" class="btn btn-primary" style="margin-left: 392px;">Display</button>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div id="titre">
+
+        <h2>Projet : {{ nom_projet }}</h2>
+      </div>
+      <!-- Couches affichées  -->
+      <div class="form-check" *ngFor="let couche of couches">
+        <input class="form-check-input" type="checkbox" [value]="couche" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          {{ couche }}
+        </label>
+      </div>
+    </div>
+
+
+    <!------------------------------------------------------------------------------------------------->
+    <!-----------------------------------------Potree : Save Point Cloud --------------------------->
+    <!-- Button trigger modal -->
+
+    <!-- <button type="button" id="btnPotreeSave" data-toggle="modal" data-target="#ModalPotreeSave">
+  Upload Point Cloud <span style="float: right;"> <i class="fa fa-cloud-upload" aria-hidden="true"></i></span>
+</button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="ModalPotreeSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="PotreeSaveData" (ngSubmit)="SavePotree()">
+              <!-- File Name -->
+              <div class="form-group">
+                <label for="exampleInputEmail1">File Name</label>
+                <input class="form-control" id="LasName" formControlName="LasName">
+              </div>
+
+              <br>
+              <!-- Upload File -->
+              <div class="form-group">
+                <label for="exampleInputEmail1">Upload File</label>
+                <input id="LasURL" type="file" name="file" class="form-control" formControlName="URLfile"
+                  (change)="getfile($event)">
+              </div>
+
+              <br>
+              <button type="submit" class="btn btn-primary">Save </button>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+  <!-- ------------------------------------------------------------------------------------------------------------- -->
+  <!-- ----------------------------------- DEPENDENCIES ADDED ------------------------------------------------------ -->
+  <!-- ------------------------------------------------------------------------------------------------------------- -->
+  <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+
+
+
+</body>
+
+</html>

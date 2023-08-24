@@ -1,0 +1,71 @@
+<div id="page_login">
+
+    <div class="wrapper">
+
+        <div class="logo">
+            <img src="assets/ICON/[removal.ai]_tmp-62ea997097729.png" alt="">
+        </div>
+
+        <div class="text-center mt-4 name">
+            DATA ETUDE
+        </div>
+
+        <form class="p-3 mt-3">
+            <div>
+                <select class="form-select" aria-label="Default select example" id="dataUseLogin_wr"
+                    (change)='OnchangeUser()'>
+                    <option> Choose the user </option>
+                    <option *ngFor="let dtUSER of dataUser" value={{dtUSER.login_w}}>{{dtUSER.nom}} {{dtUSER.prenom}}
+                    </option>
+                </select>
+            </div>
+
+            &nbsp;
+
+            <div>
+                <select id="select_id_pas" class="form-select" aria-label="Default select example"
+                (change)='OnchangeId_pas()'>
+                <option >Choose id pas </option>
+                    <option  disabled="disabled"> (id_pas,date_debut,code_pli,nom_schema) </option>
+                    <option *ngFor="let IDP of IdPas" value={{IDP.id_pas}}>{{IDP.id_pas}} ,  {{IDP.debut}} ,
+                        {{IDP.code_pli}} , {{IDP.nom_schema}}
+                    </option>
+                </select>
+            </div>
+
+            &nbsp;
+            <button class="btn mt-3" (click)="authenticate()">Login</button>
+            <button class="btn mt-3" onclick="location.href =' '">Changer d'utilisateur</button>
+
+        </form>
+
+    </div>
+
+    <div id="Table_data" >
+        &nbsp;
+        &nbsp;
+
+        <div class="container" id="tableInfo">
+            <table class="table table-striped table-hover" id="table">
+
+                <thead style=" background-color: #d37083;">
+                    <tr>
+                        <th *ngFor="let KeysTab of KeysTableUser">
+                            {{KeysTab}}
+                        </th>
+                    <tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item2 of TableDataUser  ">
+                        <th *ngFor="let item1 of item2">{{item1}} </th>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        &nbsp;
+        &nbsp;
+    </div>
+</div>
