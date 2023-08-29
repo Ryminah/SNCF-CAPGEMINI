@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd  } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +8,15 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
   username: any;
-  constructor(private router: Router) { }
+  isHomePage: boolean = false;
+
+  constructor(private router: Router) { 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.isHomePage = this.router.url === '/Accueil';
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.recupererUsername()

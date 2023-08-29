@@ -4,7 +4,7 @@
   </a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item active" *ngIf="!isHomePage">
         <button type="button" class="btn btn-outline-warning mx-3 " (click)="changerProjet()">
            Revenir à la page d'accueil
         </button>     
